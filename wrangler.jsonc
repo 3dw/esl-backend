@@ -9,6 +9,12 @@
 	"compatibility_date": "2025-06-18",
 	"observability": {
 		"enabled": true
+	},
+	/**
+	 * AI Binding for Workers AI
+	 */
+	"ai": {
+		"binding": "AI"
 	}
 	/**
 	 * Smart Placement
