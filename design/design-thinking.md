@@ -1,8 +1,14 @@
 
 需要兩個AI路由
 
+## 1. 對話
 api/v1/dialog
 接受OPITON和POST request
+
+遠端端點
+https://esl-backend.alearn13994229.workers.dev/api/v1/dialog
+
+
 
 Input範例1：
 
@@ -37,6 +43,8 @@ AI Output範例2(JSON)：
 }
 
 
+
+## 2. 步驟提示
 
 api/v1/step-hint
 接受OPITON和POST request

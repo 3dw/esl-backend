@@ -38,6 +38,7 @@ yarn deploy
 
 **範例 1：首次對話**
 
+
 ```bash
 curl -X POST http://localhost:8787/api/v1/dialog \
   -H "Content-Type: application/json" \
