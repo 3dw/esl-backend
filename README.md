@@ -31,14 +31,71 @@ yarn deploy
 啟動本地伺服器後，可用以下方式測試 API：
 
 - 路徑：`/api/v1/dialog`
-- 方法：`GET` 或 `POST`
-- 範例：
+- 方法：`POST`
+- Content-Type：`application/json`
+
+#### POST 請求範例
+
+**範例 1：首次對話**
 
 ```bash
-curl http://localhost:8787/api/v1/dialog
+curl -X POST http://localhost:8787/api/v1/dialog \
+  -H "Content-Type: application/json" \
+  -d '{
+    "topic": "到Subway點餐",
+    "history": [],
+    "prompt": "請問12吋蛋沙拉堡的英文怎麼說？"
+  }'
 ```
 
-會回傳 AI 對話的 JSON 結果。
+**範例 2：包含歷史對話**
+
+```bash
+curl -X POST http://localhost:8787/api/v1/dialog \
+  -H "Content-Type: application/json" \
+  -d '{
+    "topic": "到Subway點餐",
+    "history": ["請問12吋蛋沙拉堡的英文怎麼說？"],
+    "prompt": "我要如何跟店員說我在練英文？"
+  }'
+```
+
+**預期回應格式**：
+
+```json
+{
+  "topic": "到Subway點餐",
+  "response": "12吋蛋沙拉堡的英文是 12-inch egg mayo sub..."
+}
+```
+
+#### 測試其他情境
+
+**在咖啡廳點餐**：
+
+```bash
+curl -X POST http://localhost:8787/api/v1/dialog \
+  -H "Content-Type: application/json" \
+  -d '{
+    "topic": "在咖啡廳點餐",
+    "history": [],
+    "prompt": "我想要一杯拿鐵和一個可頌麵包，英文怎麼說？"
+  }'
+```
+
+#### 錯誤處理測試
+
+**缺少必要欄位**：
+
+```bash
+curl -X POST http://localhost:8787/api/v1/dialog \
+  -H "Content-Type: application/json" \
+  -d '{
+    "topic": "到Subway點餐"
+  }'
+```
+
+會回傳錯誤：`{"error": "topic 和 prompt 是必要欄位"}`
 
 ### CORS 支援
 
