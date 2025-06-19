@@ -88,7 +88,7 @@ export default {
 					}
 
 					// 加入當前的問題
-					messages.push({ role: "user", content: prompt });
+					messages.push({ role: "user", content: prompt.length >= 20 ? prompt : prompt + '\n過程中要學習英文。請給我一些開放性的指引，30字內。'});
 
 					// 呼叫 AI 服務
 					const response = await env.AI.run("@cf/meta/llama-3.1-8b-instruct-fast" as keyof AiModels, {
